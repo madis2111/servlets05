@@ -2,6 +2,7 @@ package ru.netology.servlet;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.netology.config.JavaConfig;
 import ru.netology.controller.PostController;
 import ru.netology.model.Post;
 import ru.netology.repository.PostRepository;
@@ -16,9 +17,22 @@ public class MainServlet extends HttpServlet {
 
   @Override
   public void init() {
-    final var repository = new PostRepository();
-    final var service = new PostService(repository);
-    controller = new PostController(service);
+//    final var repository = new PostRepository();
+//    final var service = new PostService(repository);
+//    controller = new PostController(service);
+
+
+    // отдаём класс конфигурации
+    final var context = new AnnotationConfigApplicationContext(JavaConfig.class);
+
+    // получаем по имени бина
+    controller = context.getBean(PostController.class);
+
+//    // получаем по классу бина
+//    final var service = context.getBean(PostService.class);
+//
+//    // по умолчанию создаётся лишь один объект на BeanDefinition
+//    final var isSame = service == context.getBean("postService");
   }
 
   @Override
