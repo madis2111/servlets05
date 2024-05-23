@@ -36,10 +36,6 @@ public class PostController {
     final Post data = service.getById(id);
     response.getWriter().print(gson.toJson(data));
 
-
-//    final var data = service.save(post);
-//    response.getWriter().print(gson.toJson(data));
-
   }
 
 
