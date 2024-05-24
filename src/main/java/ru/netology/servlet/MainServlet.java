@@ -17,9 +17,6 @@ public class MainServlet extends HttpServlet {
 
   @Override
   public void init() {
-//    final var repository = new PostRepository();
-//    final var service = new PostService(repository);
-//    controller = new PostController(service);
 
 
     // отдаём класс конфигурации
@@ -29,10 +26,10 @@ public class MainServlet extends HttpServlet {
     controller = context.getBean(PostController.class);
 
 //    // получаем по классу бина
-//    final var service = context.getBean(PostService.class);
-//
-//    // по умолчанию создаётся лишь один объект на BeanDefinition
-//    final var isSame = service == context.getBean("postService");
+    final var service = context.getBean(PostService.class);
+
+    // по умолчанию создаётся лишь один объект на BeanDefinition
+    final var isSame = service == context.getBean("postService");
   }
 
   @Override
